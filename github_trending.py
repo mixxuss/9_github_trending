@@ -22,6 +22,5 @@ def get_open_issues_amount(all_repos):
 if __name__ == '__main__':
     all_repos = get_trending_repositories(20)
     issues_amount = get_open_issues_amount(all_repos)
-    print(issues_amount)
     for repo, issue in issues_amount.items():
-        print('Repository %s have %d issues' % (repo, issue))
+        print('Repository %s had %d issues' % (repo, issue))
