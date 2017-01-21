@@ -5,14 +5,14 @@ import datetime
 API_RESOURCE = 'https://api.github.com/search/repositories'
 
 
-def get_trending_repositories(results_count):
+def get_trending_repositories(results_amount):
     PERIOD = str(datetime.date.today() - datetime.timedelta(days=7))
     request_params = {'q': 'created:>{}'.format(PERIOD),
                       'sort': 'stars',
                       'order': 'desc',
-                      'per_page': str(results_count)}
-    repos = requests.get(API_RESOURCE, request_params)
-    return repos.json()['items']
+                      'per_page': str(results_amount)}
+    all_repos = requests.get(API_RESOURCE, request_params)
+    return all_repos.json()['items']
 
 
 def get_open_issues_amount(all_repos):
@@ -26,4 +26,4 @@ if __name__ == '__main__':
     all_repos = get_trending_repositories(20)
     issues_amount = get_open_issues_amount(all_repos)
     for repo, issue in issues_amount.items():
-        print('Repository %s had %d issues' % (repo, issue))
+        print('Repository %s had %d issues, issues page - %s' % (repo, issue, repo + '/issues'))
