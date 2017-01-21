@@ -23,7 +23,8 @@ def get_open_issues_amount(all_repos):
 
 
 if __name__ == '__main__':
-    all_repos = get_trending_repositories(20)
+    results_amount = 20
+    all_repos = get_trending_repositories(results_amount)
     issues_amount = get_open_issues_amount(all_repos)
     for repo, issue in issues_amount.items():
         print('Repository %s had %d issues, issues page - %s' % (repo, issue, repo + '/issues'))
